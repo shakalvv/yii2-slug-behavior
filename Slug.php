@@ -124,9 +124,10 @@ class Slug extends SluggableBehavior
             $options = rtrim(trim($this->transliterateOptions), ';');
             if ($options) {
                 $options = $options . ';';
+            } else {
+            	$options = 'Any-Latin; [:Nonspacing Mark:] Remove;';
             }
-            $options .= 'Any-Latin; Latin-ASCII; NFD; [:Nonspacing Mark:] Remove; NFC;';
-            return transliterator_transliterate($options, $string);
+	    return transliterator_transliterate($options, $string);
         } else {
             return TransliteratorHelper::process($string);
         }
